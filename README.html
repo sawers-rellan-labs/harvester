@@ -391,7 +391,7 @@ tree /rsstu/users/r/rrellan/sara/ZeaGEA/results
 #     ├── B73_RefGen_v2_Chr.bed
 #     ├── pcadapt_corrected.Rimage     # PCAdapt pvalues AGPv2
 #     └── PCAdapt_v4.RDS               # PCAdapt pvalues AGPv4</code></pre>
-<p>BED file is built like:</p>
+<p><code>B73_RefGen_v2_Chr.bed</code> BED file is built like:</p>
 <pre class="{sh}"><code># in csh
 # activate conda environment fro samtools
 conda activate /usr/local/usrapps/maize/sorghum/conda/envs/snakemake-tutorial
@@ -417,6 +417,13 @@ tabs:</p>
 wget &quot;http://ftp.gramene.org/CURRENT_RELEASE/assembly_chain/zea_mays/AGPv3_to_B73_RefGen_v4.chain.gz&quot;
 gunzip AGPv3_to_B73_RefGen_v4.chain.gz
 perl -i -pe &#39; if ( $_ !~ /chain/) {s/ +/\t/g}&#39; AGPv3_to_B73_RefGen_v4.chain</code></pre>
+<div id="other-possible-data-for-combining" class="section level2">
+<h2>Other possible data for combining:</h2>
+<ul>
+<li><p>PBE scores (these are not p-values)</p></li>
+<li><p>Differential expression in +P -P experiments</p></li>
+</ul>
+</div>
 </div>
 
 
