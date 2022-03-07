@@ -24,8 +24,8 @@ tree /rsstu/users/r/rrellan/sara/ZeaGEA/results
 
 # /rsstu/users/r/rrellan/sara/ZeaGEA/results
 # ├── glm_20181019
-# │   ├── GLM_Q28_site
-# │   └── GLM_site                     # GWAS pvalues AGPv2
+# │   ├── GLM_Q28_site                 # GWAS pvalues AGPv2 corrected with K=28 subpopulations in ADMIXTURE
+# │   └── GLM_site                     # GWAS pvalues AGPv2 no correction for kinship or population structure
 # └── pcadapt
 #     ├── AGPv2_to_B73_RefGen_v4.chain
 #     ├── B73_RefGen_v2_Chr.bed
