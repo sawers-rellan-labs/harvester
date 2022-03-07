@@ -3,7 +3,8 @@ Combine candidate gene evidence from multiple sources
 
 Reference genomes
 
-```
+```{sh}
+# in csh
 tree /rsstu/users/r/rrellan/sara/ref
 
 # /rsstu/users/r/rrellan/sara/ref
@@ -17,7 +18,8 @@ tree /rsstu/users/r/rrellan/sara/ref
 
 Data to liftover into v5:
 
-```
+```{sh}
+# in csh
 tree /rsstu/users/r/rrellan/sara/ZeaGEA/results
 
 # /rsstu/users/r/rrellan/sara/ZeaGEA/results
@@ -31,11 +33,15 @@ tree /rsstu/users/r/rrellan/sara/ZeaGEA/results
 #     └── PCAdapt_v4.RDS               # PCAdapt pvalues AGPv4
 ```
 
-BED file is built like:
+`B73_RefGen_v2_Chr.bed` BED file is built like:
 
 ```{sh}
+# in csh
+# activate conda environment fro samtools
+conda activate /usr/local/usrapps/maize/sorghum/conda/envs/snakemake-tutorial
+
 set ref=/rsstu/users/r/rrellan/sara/ref
-cd ref 
+cd $ref 
 
 wget https://ftp.maizegdb.org/MaizeGDB/FTP/B73_RefGen_v2/B73_RefGen_v2.fa.gz 
 gunzip B73_RefGen_v2.fa.gz
@@ -49,9 +55,10 @@ head -n 10 $ref/B73_RefGen_v2.fa.fai | awk 'BEGIN {FS="\t"}; {gsub("Chr", "", $1
 
 ```
 
-[Chain files](https://genome.ucsc.edu/goldenPath/help/chain.html) won't be read by R unless spaces are replaced by tabs:
+Chain files [(see specs)](https://genome.ucsc.edu/goldenPath/help/chain.html)  downloaded from [the MaizeGDB ftp site](http://ftp.gramene.org/CURRENT_RELEASE/assembly_chain/zea_mays/) won't be read by R unless spaces are replaced by tabs:
 
 ```{sh}
+# in csh
 wget "http://ftp.gramene.org/CURRENT_RELEASE/assembly_chain/zea_mays/AGPv3_to_B73_RefGen_v4.chain.gz"
 gunzip AGPv3_to_B73_RefGen_v4.chain.gz
 perl -i -pe ' if ( $_ !~ /chain/) {s/ +/\t/g}' AGPv3_to_B73_RefGen_v4.chain
