@@ -16,7 +16,9 @@ tree /rsstu/users/r/rrellan/sara/ref
 # └── Zm-B73-REFERENCE-NAM-5.0.fa.fai
 ```
 
-Data to liftover into v5:
+## Data to liftover into v5
+
+As there is no v2 to v5 chainfile, that liftover must be done in two steps v2 -> v4 and v4 -> v5
 
 ```{sh}
 # in csh
