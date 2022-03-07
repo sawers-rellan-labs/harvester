@@ -1,4 +1,4 @@
-# harvester
+# `harvester`
 Combine candidate gene evidence from multiple sources
 
 Reference genomes
@@ -37,7 +37,7 @@ tree /rsstu/users/r/rrellan/sara/ZeaGEA/results
 
 ```{sh}
 # in csh
-# activate conda environment fro samtools
+# activate conda environment for samtools
 conda activate /usr/local/usrapps/maize/sorghum/conda/envs/snakemake-tutorial
 
 set ref=/rsstu/users/r/rrellan/sara/ref
@@ -63,5 +63,12 @@ wget "http://ftp.gramene.org/CURRENT_RELEASE/assembly_chain/zea_mays/AGPv3_to_B7
 gunzip AGPv3_to_B73_RefGen_v4.chain.gz
 perl -i -pe ' if ( $_ !~ /chain/) {s/ +/\t/g}' AGPv3_to_B73_RefGen_v4.chain
 ```
+
+## Other possible data for combining:
+
+  - PBE scores (these are not p-values)
+  
+  - Differential expression in +P -P experiments
+
 
 
