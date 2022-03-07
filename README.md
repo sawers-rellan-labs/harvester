@@ -1,2 +1,2 @@
 # harvester
-Combine candidate evidence from multiple sources
+Combine candidate gene evidence from multiple sources
