@@ -45,7 +45,7 @@ set pcadapt=/rsstu/users/r/rrellan/sara/ZeaGEA/results/pcadapt
 
 cd $pcadapt
 
-head -n 10 $ref/B73_RefGen_v2.fa.fai | awk 'BEGIN {FS="\t"}; {gsub("Chr", "", $1); gsub(":.*", "", $1); print $1 FS "0" FS $2 FS "ws"}' | sort -k1,1 > B73_RefGen_v2_Chr.bed
+head -n 10 $ref/B73_RefGen_v2.fa.fai | awk 'BEGIN {FS="\t"}; {gsub("Chr", "", $1); gsub(":.*", "", $1); print $1 FS "0" FS $2 FS "ws"}' | sort -k1,1n > B73_RefGen_v2_Chr.bed
 
 ```
 Chain files won't be read by R unless spaces are replaced by tabs:

@@ -20,7 +20,7 @@ colm <- NULL
 # REMEMBER: BED file format specifications say that bed files are indexed
 # at 0 (zero indexed coordinates)!!!!!!!!!!!
 #
-# head -n 10 /rsstu/users/r/rrellan/sara/B73_RefGen_v2.fa.fai | awk 'BEGIN {FS="\t"}; {gsub("Chr", "", $1); gsub(":.*", "", $1); print $1 FS "0" FS $2 FS "ws"}' | sort -k1,1 > B73_RefGen_v2_Chr.bed 
+# head -n 10 /rsstu/users/r/rrellan/sara/B73_RefGen_v2.fa.fai | awk 'BEGIN {FS="\t"}; {gsub("Chr", "", $1); gsub(":.*", "", $1); print $1 FS "0" FS $2 FS "ws"}' | sort -k1,1n > B73_RefGen_v2_Chr.bed 
 #
 # double check SNP coordinates!
 #
