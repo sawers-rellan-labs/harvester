@@ -367,7 +367,8 @@ pre code {
 <div id="harvester" class="section level1">
 <h1><code>harvester</code></h1>
 <p>Combine candidate gene evidence from multiple sources</p>
-<p>Reference genomes</p>
+<div id="reference-genomes" class="section level2">
+<h2>Reference genomes</h2>
 <pre class="{sh}"><code># in csh
 tree /rsstu/users/r/rrellan/sara/ref
 
@@ -378,10 +379,48 @@ tree /rsstu/users/r/rrellan/sara/ref
 # ├── Zm-B73-REFERENCE-GRAMENE-4.0.fa.fai
 # ├── Zm-B73-REFERENCE-NAM-5.0.fa
 # └── Zm-B73-REFERENCE-NAM-5.0.fa.fai</code></pre>
+</div>
 <div id="data-to-liftover-into-v5" class="section level2">
 <h2>Data to liftover into v5</h2>
+<p>Romero Navarro 2017 unfiltered data comes from <a href="https://data.cimmyt.org/dataset.xhtml?persistentId=hdl:11529/10035">SEEDs
+dataset at CYMMIT</a></p>
+<pre class="{sh}"><code># Genome version (AGPv2) inferred from the following line in
+# All_Zea_GBS_Build_July_2012-Final-release_notes.pdf
+bowtie2 -M 4 -p 15 \
+        --very-sensitive-local \ 
+        -x ../zeareference/bt2/ZmB73_RefGen_v2.fa \
+        -U ./AllZeaMasterTags_c10_20120607.fq \
+        -S AllZeaMasterTags_c10_20120613.sam</code></pre>
+<p>Filtering SNPs (MAF &gt;0.01)</p>
+<pre class="{sh}"><code>#!/usr/bin/env bash
+
+TASSEL5=/Applications/TASSEL\ 5/run_pipeline.pl
+
+for n in $(seq 1 10);
+    do $TASSEL5  -h ../dataverse_files/AllZeaGBSv2.7_SEED_Beagle4_chr${n}.hmp.txt \
+        -includeTaxaInFile taxalist.txt \
+        -FilterSiteBuilderPlugin -siteMinAlleleFreq 0.01 -endPlugin \
+        -export chr${n}_ ;
+   done</code></pre>
+<p>This filtered data set was copied to the HPC:</p>
+<pre class="{sh}"><code>tree /rsstu/users/r/rrellan/sara/SorghumGEA/data/RomeroNavarro2017/filtered
+# /rsstu/users/r/rrellan/sara/SorghumGEA/data/RomeroNavarro2017/filtered
+# ├── chr10_1.hmp.txt
+# ├── chr1_1.hmp.txt
+# ├── chr2_1.hmp.txt
+# ├── chr3_1.hmp.txt
+# ├── chr4_1.hmp.txt
+# ├── chr5_1.hmp.txt
+# ├── chr6_1.hmp.txt
+# ├── chr7_1.hmp.txt
+# ├── chr8_1.hmp.txt
+# └── chr9_1.hmp.txt</code></pre>
 <p>As there is no v2 to v5 chainfile, that liftover must be done in two
-steps v2 -&gt; v4 and v4 -&gt; v5</p>
+steps:</p>
+<ol style="list-style-type: decimal">
+<li>v2 -&gt; v4</li>
+<li>v4 -&gt; v5</li>
+</ol>
 <pre class="{sh}"><code># in csh
 tree /rsstu/users/r/rrellan/sara/ZeaGEA/results
 

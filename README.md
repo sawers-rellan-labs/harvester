@@ -1,7 +1,7 @@
 # `harvester`
 Combine candidate gene evidence from multiple sources
 
-Reference genomes
+## Reference genomes
 
 ```{sh}
 # in csh
@@ -18,6 +18,35 @@ tree /rsstu/users/r/rrellan/sara/ref
 
 ## Data to liftover into v5
 
+Romero Navarro 2017 unfiltered data comes from [SEEDs dataset at CYMMIT](https://data.cimmyt.org/dataset.xhtml?persistentId=hdl:11529/10035)
+
+```{sh}
+# Genome version (AGPv2) inferred from the following line in
+# All_Zea_GBS_Build_July_2012-Final-release_notes.pdf
+bowtie2 -M 4 -p 15 \
+        --very-sensitive-local \ 
+        -x ../zeareference/bt2/ZmB73_RefGen_v2.fa \
+        -U ./AllZeaMasterTags_c10_20120607.fq \
+        -S AllZeaMasterTags_c10_20120613.sam
+```
+
+Filtering SNPs (MAF >0.01)
+
+```{sh}
+#!/usr/bin/env bash
+
+TASSEL5=/Applications/TASSEL\ 5/run_pipeline.pl
+
+for n in $(seq 1 10);
+	do $TASSEL5  -h ../dataverse_files/AllZeaGBSv2.7_SEED_Beagle4_chr${n}.hmp.txt \
+		-includeTaxaInFile taxalist.txt \
+		-FilterSiteBuilderPlugin -siteMinAlleleFreq 0.01 -endPlugin \
+		-export chr${n}_ ;
+   done
+```
+ 
+This filtered data set was copied to the HPC:
+
 ```{sh}
 tree /rsstu/users/r/rrellan/sara/SorghumGEA/data/RomeroNavarro2017/filtered
 # /rsstu/users/r/rrellan/sara/SorghumGEA/data/RomeroNavarro2017/filtered
@@ -32,7 +61,10 @@ tree /rsstu/users/r/rrellan/sara/SorghumGEA/data/RomeroNavarro2017/filtered
 # ├── chr8_1.hmp.txt
 # └── chr9_1.hmp.txt
 ```
-As there is no v2 to v5 chainfile, that liftover must be done in two steps v2 -> v4 and v4 -> v5
+As there is no v2 to v5 chainfile, that liftover must be done in two steps:
+
+  1. v2 -> v4 
+  2. v4 -> v5
 
 ```{sh}
 # in csh
