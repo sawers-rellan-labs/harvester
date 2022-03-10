@@ -378,14 +378,17 @@ tree /rsstu/users/r/rrellan/sara/ref
 # ├── Zm-B73-REFERENCE-GRAMENE-4.0.fa.fai
 # ├── Zm-B73-REFERENCE-NAM-5.0.fa
 # └── Zm-B73-REFERENCE-NAM-5.0.fa.fai</code></pre>
-<p>Data to liftover into v5:</p>
+<div id="data-to-liftover-into-v5" class="section level2">
+<h2>Data to liftover into v5</h2>
+<p>As there is no v2 to v5 chainfile, that liftover must be done in two
+steps v2 -&gt; v4 and v4 -&gt; v5</p>
 <pre class="{sh}"><code># in csh
 tree /rsstu/users/r/rrellan/sara/ZeaGEA/results
 
 # /rsstu/users/r/rrellan/sara/ZeaGEA/results
 # ├── glm_20181019
-# │   ├── GLM_Q28_site
-# │   └── GLM_site                     # GWAS pvalues AGPv2
+# │   ├── GLM_Q28_site                 # GWAS pvalues AGPv2 corrected with K=28 subpopulations in ADMIXTURE
+# │   └── GLM_site                     # GWAS pvalues AGPv2 no correction for kinship or population structure
 # └── pcadapt
 #     ├── AGPv2_to_B73_RefGen_v4.chain
 #     ├── B73_RefGen_v2_Chr.bed
@@ -417,6 +420,7 @@ tabs:</p>
 wget &quot;http://ftp.gramene.org/CURRENT_RELEASE/assembly_chain/zea_mays/AGPv3_to_B73_RefGen_v4.chain.gz&quot;
 gunzip AGPv3_to_B73_RefGen_v4.chain.gz
 perl -i -pe &#39; if ( $_ !~ /chain/) {s/ +/\t/g}&#39; AGPv3_to_B73_RefGen_v4.chain</code></pre>
+</div>
 <div id="other-possible-data-for-combining" class="section level2">
 <h2>Other possible data for combining:</h2>
 <ul>

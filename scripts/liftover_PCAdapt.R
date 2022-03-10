@@ -10,8 +10,8 @@ colm <- NULL
 
 # SEEDs data  (Romero Navarro 2017) is in AGPv2
 # This version of pcadapt is also in AGPv2
-# because PCAdapt data loads into a GRanges object with warnings
-# about out of range SNPS if AGPv3 is used
+# I inferred this because PCAdapt data loads into a GRanges object with warnings
+# about out of range SNPs if AGPv3 seqinfo is used
 #
 # B73_RefGen_v2_Chr.bed
 # file with each chromosome start and end coordinates

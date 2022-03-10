@@ -18,6 +18,20 @@ tree /rsstu/users/r/rrellan/sara/ref
 
 ## Data to liftover into v5
 
+```{sh}
+tree /rsstu/users/r/rrellan/sara/SorghumGEA/data/RomeroNavarro2017/filtered
+# /rsstu/users/r/rrellan/sara/SorghumGEA/data/RomeroNavarro2017/filtered
+# ├── chr10_1.hmp.txt
+# ├── chr1_1.hmp.txt
+# ├── chr2_1.hmp.txt
+# ├── chr3_1.hmp.txt
+# ├── chr4_1.hmp.txt
+# ├── chr5_1.hmp.txt
+# ├── chr6_1.hmp.txt
+# ├── chr7_1.hmp.txt
+# ├── chr8_1.hmp.txt
+# └── chr9_1.hmp.txt
+```
 As there is no v2 to v5 chainfile, that liftover must be done in two steps v2 -> v4 and v4 -> v5
 
 ```{sh}
